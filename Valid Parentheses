@@ -1,0 +1,18 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        Close_Open = { ")" : "(", "]" : "[", "}" : "{" }
+        for char in s:
+            if char in Close_Open:
+                if stack and stack[-1] == Close_Open[char]:
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(char)
+        return not stack
+        #Time Complexity: O(N) going over everysingle char
+        #append to stack if its a opening parenthesis, else
+        #meaing closeing, we pop the opening parenthesis from stack
+        #Space Complexity: O(N) because it is possible for the 
+        #str to have only opening but not closing
