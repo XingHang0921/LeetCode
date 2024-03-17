@@ -1,0 +1,6 @@
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        res = s.split()
+        return len(res[-1])
+Time complexity: O(N) for the operation of split need to iterate through str to filter out the space
+Space complexity:O(M) for the number of word contained in s
