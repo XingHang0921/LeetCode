@@ -1,0 +1,15 @@
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        l, r = 1 ,1
+        while r < len(nums):
+            if(nums[r - 1] != nums[r]):
+                nums[l] = nums[r]
+                l += 1
+                r += 1
+            else:
+                r += 1
+        return l
+Time Complexity: O(2N) Since we have two pointer going over the array.
+it is possible for the array to contain all unique number and for that case,
+both l and r will go over the array in the loop
+No extra space complexity since we are modifying the array itself.
