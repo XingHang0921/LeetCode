@@ -1,0 +1,8 @@
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        original_x = str(x)
+        return original_x == original_x[::-1]
+Time complexity: O(N) for N is the length of x after convert to string
+                  , we can aviod the O(1) for comparsion, Therefore O(N)
+Space complexity: O(1), but we can choose not to store the x in string but just convert
+it in the operation after.
