@@ -1,0 +1,17 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+        #every root is 1 level of depth
+        #we try to look for left and right, each left and right is 1 level of depth
+        # so we can use DFS recursively to go through each.
+        #however we will be taking the max of left and right subtree because 
+        #we even if both of them exist, its 1 level of depth.
+        # and plus one from the original root.
