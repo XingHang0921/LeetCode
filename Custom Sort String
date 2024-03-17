@@ -1,0 +1,17 @@
+class Solution:
+    def customSortString(self, order: str, s: str) -> str:
+        s_counts = collections.Counter(s) 
+        res = []
+        for char in order:
+            if char in s_counts:
+                res.extend([char] * s_counts[char])
+                del s_counts[char]
+        for char, count in s_counts.items():
+            res.extend([char]* count)
+        return "".join(res)
+    # time complexity: O(M) + O(N) for M is the number of char in s 
+    # for we need to check the count of each char
+    # N is the number of res for length of s of how many operation
+    # we need to do
+    # space complexity: O(M) + O(N) for M is the number of char in s store in dict
+    # N is the number of unique char in s
