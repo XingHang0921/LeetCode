@@ -1,0 +1,13 @@
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        s = ""
+        res = []
+        for digit in digits:
+            s += str(digit)
+        digit_s = int(s) + 1
+        for digit in str(digit_s):
+            res.append(int(digit))
+        return res
+
+Time Complexity: O(2log N + M) for N is string conversion  and M is int conversion both depending on the length of digits
+Space complexity: O(N) for res's storage is the length of digits or length of digits + 1 for increment.
