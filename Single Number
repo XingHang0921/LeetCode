@@ -1,0 +1,9 @@
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        res = 0
+        for num in nums:
+            res ^= num
+        return res
+# it was fun to see a different solution like this only a loop and few lines of code.
+# Bit going under the hood n1 XOR n2 XOR n3 XOR n4 .... XOR ni
+# with no extra space requirement besides a variable.
