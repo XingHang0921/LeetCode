@@ -13,3 +13,4 @@ class Solution:
             i+= 1
 
         return "".join(stack)
+#O(n) for looping over the length of the string.
