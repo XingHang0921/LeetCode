@@ -1,0 +1,24 @@
+class Solution:
+    def checkValidString(self, s: str) -> bool:
+        leftMin, leftMax = 0, 0
+        for char in s:
+            if char == "(":
+                leftMin += 1
+                leftMax += 1
+            elif char == ")":
+                leftMin -= 1
+                leftMax -= 1
+            else:
+                leftMin -+ 1
+                leftMax += 1
+            if leftMax < 0:
+                return False
+            if leftMin < 0:
+                leftMin = 0
+        return leftMin == 0
+# decision tree problem but could be solve by using variable in O(n) time.
+# When the maximum number of left parenthesis is < 0 that means ) is more than (
+# When the minimum number of left parenthesis is < 0 we don't want to return false because 
+# when leftMin turn -1 it just means we have the potential that the string is invalid
+# and we can handle the case by returning leftMin==0 because when loop ends and we have 0 left parenthesis
+# we can consider that is a good string
