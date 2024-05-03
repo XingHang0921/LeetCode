@@ -1,0 +1,17 @@
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        l, r = 0, x
+        res = 0
+        if x == 0: return 0
+        while l <= r:
+            m = (l + r) // 2
+            if m**2 > x:
+                r = m - 1
+            elif m**2 < x:
+                l = m + 1
+                res = m
+            else:
+                return m
+        return res
+Runtime: O(logn) since for every candidate was selected in the midway
+            and repeatly until a result.
