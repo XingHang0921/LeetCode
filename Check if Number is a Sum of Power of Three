@@ -1,0 +1,16 @@
+class Solution:
+    def checkPowersOfThree(self, n: int) -> bool:
+        exp = 0
+
+        while n >= 3**(exp + 1):
+            exp += 1
+
+        while exp >= 0:
+            if 3**exp <= n:
+                n -= 3**exp
+            if 3**exp <= n:
+                return False
+            exp -= 1
+
+        return n == 0
+            
