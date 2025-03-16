@@ -1,0 +1,16 @@
+class Solution:
+    def repairCars(self, ranks: List[int], cars: int) -> int:
+        ranks.sort()
+        l, r = 1, (ranks[0] * cars**2)
+        res = 0
+        while l <= r:
+            m = (l + r) // 2
+            sum = 0
+            for rank in ranks:
+                sum += int((m / rank)**0.5)
+            if sum >= cars:
+                res = m
+                r = m - 1
+            else:
+                l = m + 1
+        return res
