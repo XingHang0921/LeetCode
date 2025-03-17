@@ -7,3 +7,20 @@ class Solution:
             if count % 2 != 0: 
                 return False
         return True
+
+Time complexity: O(N) the loop is not nested and both loop goes in times of len(nums) which can't be worser than N
+Space complexity: by using the dic, it creates a key, value pair for a unique key, the number can be all different
+in the worse case and all the same at the best case so, O(1)  vs O(N) -> O(N)
+
+class Solution:
+    def divideArray(self, nums: List[int]) -> bool:
+        counter=collections.Counter(nums)
+        for num, count in counter.items():
+            if count % 2 != 0: 
+                return False
+        return True
+
+
+why change to version2:
+    counter is a sub class of dictionary with spcifically targets counting, slightly more efficient
+    than to use a dictionary that I need to manually increment the value of each key
