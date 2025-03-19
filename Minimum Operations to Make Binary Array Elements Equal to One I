@@ -1,7 +1,7 @@
 class Solution:
     def minOperations(self, nums: List[int]) -> int:
         res = 0
-        for i in range(len(nums) -2):
+        for i in range(len(nums)):
             if not nums[i] and i + 1 < len(nums) and i + 2 < len(nums):
                 nums[i] = abs(nums[i] - 1)
                 nums[i + 1] = abs(nums[i + 1] - 1)
@@ -10,3 +10,28 @@ class Solution:
         if sum(nums) < 1 * len(nums):
             return -1
         else: return res
+
+
+
+class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        res = 0
+        for i in range(len(nums) -2):
+            if not nums[i]:
+                nums[i] = 1 - nums[i] 
+                nums[i + 1] = 1 - nums[i + 1]
+                nums[i + 2] = 1- nums[i + 2]
+                res += 1
+        if not nums[-1] or not nums[-2]:
+            return -1
+        else: return res
+
+why change to version 2:
+1.if the sliding window is 3 consecutive element in the array and i know that i need to check the existence of [i+1] and [i+2] before.
+I can just stop at the 3rd element in the reverse order and avioid checking 2 more boolean value.
+2. I could aviod using absolute value by switching from    num - 1   to 1 - num : ex 1 - 0 = 1,    1 - 1 = 0
+3. to match the requirement all element has to be equal to one then the sum of the array must equal to 1 * the length of array
+but I can do this in a better way because from what I did in the sliding window algorithm everything before was already 1.
+whats left are only the last two element that going to affect the result.
+** After fliping the all the "coin" if one of the two last element is still 0 then it is impossible to goal all 1s
+
