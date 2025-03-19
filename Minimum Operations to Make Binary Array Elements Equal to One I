@@ -10,8 +10,8 @@ class Solution:
         if sum(nums) < 1 * len(nums):
             return -1
         else: return res
-
-
+O(N) Time 
+O(1) Space
 
 class Solution:
     def minOperations(self, nums: List[int]) -> int:
@@ -25,6 +25,8 @@ class Solution:
         if not nums[-1] or not nums[-2]:
             return -1
         else: return res
+O(N-2) ----> O(N) Time  - as -2 will shrink its usefulness in length of N 
+O(1) Space     as a fix constant space of res.
 
 why change to version 2:
 1.if the sliding window is 3 consecutive element in the array and i know that i need to check the existence of [i+1] and [i+2] before.
