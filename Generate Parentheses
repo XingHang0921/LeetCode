@@ -1,0 +1,16 @@
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def backtrack(s, openCount, closeCount):
+            if len(s) == 2 * n:
+                res.append(s)
+                return
+            if openCount < n:
+                backtrack(s + '(', openCount + 1, closeCount)
+            if openCount > closeCount:
+                backtrack(s + ')', openCount, closeCount + 1)
+        res = []
+        backtrack('',0,0)
+        return res
+O(2^N) time complexity for all possible valid sequences for we still have to call a backtracking function to check if it is invalid and stop
+        2 for there are only '(' and ')' and N representing the number of pairs
+space complexity is also O(2^N) for the storage will grow expontially and exceed 2N in the example given for 3 pairs and we got 5 output.
