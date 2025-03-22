@@ -1,0 +1,26 @@
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        s = []
+        for token in tokens:
+            if token.isdigit() or (token[0] == '-' and len(token) > 1 and token[1:].isdigit()):
+                s.append(int(token))
+                continue
+            else:
+                b = s.pop()
+                a = s.pop()
+                if token == '+':
+                    s.append(a + b)
+                elif token == '-':
+                    s.append(a - b)
+                elif token == '*':
+                    s.append(a * b)
+                elif token == '/':
+                    s.append(int(a / b))
+        return s[0]
+
+Time complexity of O(N) for looping through to perform O(1) push and pop operation into the stack
+            at worse O(N)  pushing all number before handling
+            at best O(1) for a immdieate operation follow behind 2 number,   which shrinks the stack by 1
+            at average O(2/3 * N) for it is a vaild reverse polish notation that every 3 element there will be a non-digit
+                                  so at most 2/3 of the lists is digit.
+Space: O(N) grow and shrink throughout the cases.
