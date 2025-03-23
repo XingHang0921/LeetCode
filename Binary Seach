@@ -16,3 +16,22 @@ class Solution(object):
             else:
                 low = mid + 1
         return -1
+
+attempting 2nd time:
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        l, r = 0 , len(nums) - 1
+        while l <= r:
+            m = l + (r - l) // 2
+            if nums[m] == target:
+                return m
+            elif nums[m] < target:
+                l = m + 1
+            else:
+                r = m - 1
+        return -1
+(l + r) // 2 will result in time exceed limit O(log n) as the input sample is large and gets big numbers in the additon part.
+r-l will get me the index from l to r and divid by 2 will give me the require index from l to the medium and by adding l to such index, i get m.
+run time: O(log n) 
+space: O(1)
