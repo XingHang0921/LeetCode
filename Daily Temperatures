@@ -1,0 +1,15 @@
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        s = []
+        res = [0] * len(temperatures)
+
+        for i, temp in enumerate(temperatures):
+            while s and temp > temperatures[s[-1]]:
+                prevIndex = s.pop()
+                res[prevIndex] = i - prevIndex
+            s.append(i)
+        return res
+
+time complexity: O(N) for iterating through the list and omitting the performance of 2n operations of pop and push
+space complexity:0(N)  for res hold len(temperatures) element &&
+      for at the worse case when we have a decreasing input list, stack will store all element.
