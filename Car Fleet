@@ -1,0 +1,13 @@
+class Solution:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        stk = []
+        cars = sorted(zip(position,speed), reverse=True)
+        for p, s in cars:
+            time = (target - p) / s
+            if not stk or time > stk[-1]:
+                stk.append(time)
+
+        return len(stk)
+
+Time: O(N) for sorting car  +    O(N) for iterating through (p,s) pair in cars-> omit 2N as it grow O(N) run time complexity
+Space: O(N) for the number of car fleet will never exceed the total number of cars.
