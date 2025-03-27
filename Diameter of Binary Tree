@@ -19,5 +19,5 @@ class Solution:
         helper(root)
         return res
 
-time Complexity: O(N) for we are only visiting each node once
-space complexity: O(h) for h is the height of the tree, because thats the length of the tree we need to store in the call stack
+time Complexity: O(N) for we are only visiting each node once.
+space complexity: O(h) for h is the height of the tree, because thats the length of the tree we need to store in the call stack.
