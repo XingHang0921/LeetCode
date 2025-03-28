@@ -15,7 +15,7 @@ class Solution:
         l, r = 0, n * m - 1
         while l <= r:
             mid = (r + l) // 2
-            row, col = divmod(mid, m)
+            row, col = mid // m, mid % m
             if matrix[row][col] == target:
                 return True
             elif target < matrix[row][col]:
