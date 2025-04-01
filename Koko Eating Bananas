@@ -1,0 +1,41 @@
+Brute force:
+pass Run
+fail Submittion on Time Limit Exceed
+
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        speed = 1
+        while True:
+            time = 0
+            for pile in piles:
+                time += math.ceil(pile / speed)
+            if time <= h:
+                return speed
+            speed += 1
+        return speed
+            
+
+
+
+by coming up with a brute force solution,
+it is clear that I can apply Binary search on a window size from 1 to the max(piles)
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        speed = 1
+        maxSpeed = max(piles)
+        res = maxSpeed
+        while speed <= maxSpeed:
+            time = 0
+            m = (speed + maxSpeed) // 2
+            for pile in piles:
+                time += math.ceil(pile / m)
+            if time <= h:
+                res = m
+                maxSpeed = m - 1
+            else:
+                speed = m + 1
+        return res
+
+run time : O(log(max(piles) * piles)  
+space : O(1)
+  
