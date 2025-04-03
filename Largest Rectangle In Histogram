@@ -1,0 +1,20 @@
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        res = 0
+        stack = []
+        for i, h in enumerate(heights):  
+            start = i
+            while stack and h < stack[-1][1]:
+                index, height = stack.pop()
+                res = max((height * (i - index), res))
+                start = index
+            stack.append( (start, h) )
+        for i, h in stack:
+            area = (len(heights) - i) * h
+            res = max(res, area)
+        return res
+
+Using One pass Stack to append and pop the pair element only once and compute the area for each once also,
+O(N) for going through the array
+  ps: O(1) for push and pop
+O(N) for space, for worse case we store each one then compute and pop
