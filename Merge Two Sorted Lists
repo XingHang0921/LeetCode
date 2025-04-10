@@ -48,3 +48,17 @@ class Solution:
         node.next = list1 or list2
         return dummy.next
 
+
+
+if not list1 and not list2:
+            return None
+        if not list1:
+            return list2
+        if not list2:
+            return list1
+
+turns out this is not necessary because the while loop has already checked for the cases and node.next = list1 or list2 hold the case
+where I need to output the ListNode that actually exist or none for a dummy node.
+
+
+
