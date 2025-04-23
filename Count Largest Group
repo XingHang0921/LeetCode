@@ -1,0 +1,19 @@
+class Solution:
+    def countLargestGroup(self, n: int) -> int:
+        def getSum(x):
+            sum = 0
+            while x > 0:
+                sum += x % 10
+                x /= 10
+        freq = collections.Counter()
+        for i in range(1, n):
+            freq[getSum(i)] += 1
+        m = max(freq.values())
+        res = 0
+        for v in freq.values():
+            if v == max:
+                res += 1
+        return res
+
+O(n * d) for n = input, d = the number of digit a number has. 
+  d depends on the log base 10 of the number, that will give us the number of digit a number has.
