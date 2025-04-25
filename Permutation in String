@@ -1,0 +1,13 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        freq1 = Counter(s1)
+        l, r = 0, len(s1)
+        while r <= len(s2):
+            freq2 = Counter(s2[l:r])
+            if(freq1 == freq2):
+                return True
+            else:
+                l += 1
+                r += 1
+        return False
+
