@@ -1,0 +1,35 @@
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        res = ""
+        if not t or not s:
+            return res
+
+        l = r = 0
+        tCount = Counter(t)
+        sCount = Counter(s)
+        need = len(t)
+        have = 0
+        while r <= len(s):
+            if have === need and len(res) >= s[l:r] or res == '':
+                res = s[l:r]
+                if s[l] in sCount:
+                    have -= 1
+                l += 1
+            for 
+            if 
+        return res
+
+
+
+        
+        //update the res
+            when count of char in t  >= t itself
+        
+        window should be
+        len(s) - len(t)
+        biggest - small
+        the whole is a substring
+            vs
+        the same string as substring
+
+        or none
