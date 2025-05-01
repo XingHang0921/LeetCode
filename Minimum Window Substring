@@ -62,3 +62,4 @@ class Solution:
         l, r = res
         return s[l:r + 1] if resLen != float('infinity') else ''
 
+NEXT DAY CHECK
