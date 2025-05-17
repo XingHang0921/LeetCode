@@ -14,3 +14,26 @@ class Solution(object):
                 visited_col[col].add(board[row][col])
                 visited_square[(row//3, col//3)].add(board[row][col])
         return True
+
+
+revisiting:
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        row = collections.defaultdict(set)
+        col = collections.defaultdict(set)
+        box = collections.defaultdict(set)
+
+        for r in range(9):
+            for c in range(9):
+                num = board[r][c]
+                if num == '.':
+                    continue
+                cell = (r // 3) * 3 + (c // 3)
+                if num in row[r] or num in col[c] or num in  box[cell]:
+                    return False
+                row[r].add(num)
+                col[c].add(num)
+                box[cell].add(num)
+        return True
+
