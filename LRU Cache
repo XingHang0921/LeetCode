@@ -49,3 +49,9 @@ class LRUCache:
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
 # obj.put(key,value)
+
+2nd 1.forgot to build the init_ setup on connecting left and right dummy node, led to error in tracking nothing
+    2. hashmap and doubly linked list exist together to form the structure to store and track:
+        need to insert and add to the cache,
+            insert ensures frequency
+            cache ensures storage, reference check.
