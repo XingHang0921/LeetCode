@@ -19,3 +19,9 @@ class Solution:
             if n == k:
                 return cur.val
             cur = cur.right
+
+visit the leftmost node and store current node to stack, until no node exist
+then pop the node from stack and see if we reach the kth smallest, if not
+see if right node exist before going to upper level
+when there id no right node, curr is none but stack is not empty so, it will pop the top level parent node to
+ensure we are traversing upward.
