@@ -1,0 +1,34 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        res = [root.val]
+
+        def dfs(root):
+            if not root:
+                return 0
+            leftMax = dfs(root.left)
+            rightMax = dfs(root.right)
+            leftMax = max(leftMax, 0)
+            rightMax = max(rightMax, 0)
+
+            res[0] = max(res[0], root.val + leftMax + rightMax)
+
+            return root.val + max(leftMax, rightMax)
+        dfs(root)
+        return res[0]
+
+crucial part:
+1.in python we can mutate the value of a outer scope in the inner scope.
+but the reason why we use list variable instead of a int variable is that, if we use int variable, python will recogize res as a local variable when computing the MAX.
+therefore will cause a error of reference or missing initilization of res in the inner scope.
+2.we are return the max posible path sum in the current node to the top, and storing the current max path sum in the res[0]
+in this way we can fully use the feature of dfs and get everything we need from the bottom then to the top.
+
+time complexity will be O(n) since we are only visiting each node one time,
+memory complexity: will be O(h) for we have few variable and the call stack cause memory.
