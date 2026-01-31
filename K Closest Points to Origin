@@ -1,0 +1,27 @@
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        minHeap = []
+        for x, y in points:
+            dist = (x** 2) + (y** 2)
+            minHeap.append([dist, x, y])
+        heapq.heapify(minHeap)
+        res=[]
+        while k > 0:
+            dist, x, y = heapq.heappop(minHeap)
+            res.append([x,y])
+            k -= 1
+        return res
+
+crucial point:
+find the closest k point to the origin, lets put the question to find the closest one point to the origin to make the problem a little bit more easier
+what we need is the distance of each point from the origin, and we have a given function for that.
+
+tip: a square root of a bigger number will be bigger than a square root of a smaller number, thus we can minimize the mathmatical process of square root and just take the square sum of x and y
+
+we want the shortest distance so, a minHeap might help us alot in sorting.
+we can use the distance as a sorting standard
+and pop smallest point
+
+going back the original problem, now its not only one smallest point, it could be k smallest point
+so we will need to pop until k = 0.
+
