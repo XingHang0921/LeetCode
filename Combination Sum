@@ -1,0 +1,38 @@
+class Solution:
+    def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
+        res = []
+
+        def dfs(i, cur, total):
+            if total == target:
+                res.append(cur.copy())
+                return
+            if i >= len(nums) or total > target:
+                return
+            cur.append(nums[i])
+            dfs(i, cur, total + nums[i])
+            cur.pop()
+            dfs(i + 1, cur, total)
+
+        dfs(0,[],0)
+        return res
+
+
+crucial part:
+understanding the question:
+we need a result in form of a list containing sublist of combination (vaild total sum to the target)
+ex. [[],[],[]]
+when processing a brutal force solution:
+where each candidate in nums can use unlimited times of it self and others, we can end it up with duplicate. which the solution is looking for combination not permutation.
+To eliminate the duplicate, we need to consider two cases for each candidate.
+case 1: including the candidate
+case 2: not including the candidte
+in this way we are getting a binary recursion tree on each cur combination.
+
+time complexity:
+first we cans see that it s 2 decision each time. so this has to be a expontial growth.
+O(2^T) worse case: if we kept on picking the smallest candidate in nums and reach the target
+ex. target= 100 , candidate = 1 we choose 100 time of 2 possible direction
+O(2^(T/m) best case for not chooing smallest nums all ways
+
+Space compleity:
+O(2^T/m) for this is the tree height in the recursion call stack.
