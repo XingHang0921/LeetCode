@@ -1,0 +1,51 @@
+class TreeNode:
+    def __init__(self):
+        self.children = {}
+        self.endOfWord = False
+
+class PrefixTree:
+
+    def __init__(self):
+        self.root = TreeNode()
+
+    def insert(self, word: str) -> None:
+        cur = self.root
+        for c in word:
+            if c not in cur.children:
+                cur.children[c] = TreeNode()
+            cur = cur.children[c]
+        cur.endOfWord = True
+    def search(self, word: str) -> bool:
+        cur = self.root
+        for c in word:
+            if c not in cur.children:
+                return False
+            cur = cur.children[c]
+        return cur.endOfWord
+    def startsWith(self, prefix: str) -> bool:
+        cur = self.root
+        for c in prefix:
+            if c not in cur.children:
+                return False
+            cur = cur.children[c]
+        return True
+
+
+crucial part:
+
+understanding the problem: 
+we need a data structure to implment the PrefixTree:
+
+Modeling:
+Node:
+why node we need reference to the next character and check of if the current node indicates a complete word
+node can have connection to the next node and kept a indication.
+Dict:
+O(1) for insert, lookup it sounds optimal but why not others
+like list or set.
+accessing list is O(N) so its a no
+set can access O(1) but cant not act like a key-value pair to keep record of next character or if its the end of a word
+
+so dict is our choice.
+
+
