@@ -48,4 +48,11 @@ set can access O(1) but cant not act like a key-value pair to keep record of nex
 
 so dict is our choice.
 
+time complexity:
+O(n) for n is the len(word) for insert, search
+O(Prefix) for it only look for part of the word not a complete word
+
+space complexity:
+O(n) for all the character store in the tree
+
 
