@@ -1,0 +1,49 @@
+class TreeNode:
+    def __init__(self):
+        self.children = {}
+        self.endOfWord = False
+class WordDictionary:
+    def __init__(self):
+        self.root = TreeNode()
+    def addWord(self, word: str) -> None:
+        cur = self.root
+        for c in word:
+            if c not in cur.children:
+                cur.children[c] = TreeNode()
+            cur = cur.children[c]
+        cur.endOfWord = True
+    def search(self, word: str) -> bool:
+        def dfs(index, root):
+            cur = root
+            for i in range(index, len(word)):
+                if word[i] == '.':
+                    for child in cur.children.values():
+                        if dfs(i + 1, child):
+                            return True
+                    return False
+                elif word[i] not in cur.children:
+                    return False
+                cur = cur.children[word[i]]
+            return cur.endOfWord
+        return dfs(0, self.root)
+
+crucial part:
+overall, the major issue is on search function. it need a efficient check to the next letter.
+we are constructing a dictionary or key-value pairs that has a reference to its child letter (next possible letters)
+
+we need to consider the case where there is a "." and the case where its a alphabet.
+
+whats difficult is when we encounter a '.' input, we dont know which letter in the child will match the next word[i].
+so we need to call the function on every single one of the letter in the children. and end it as a conjunction of true or false
+
+time complexity:
+O(len(word)) for addWord  
+search worse case
+  O(24^len(word)) 
+  O(len(word)) best case
+  O(len(word) * average branch) average case
+
+space complexity:
+（N） for all the character in the storage
+
+memory: O(len(word)) for the deepest path will be at the limit of length of the word
