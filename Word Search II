@@ -1,0 +1,58 @@
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.endOfWord = False
+    def addWord(self, word):
+        cur = self
+        for c in word:
+            if c not in cur.children:
+                cur.children[c] = TrieNode()
+            cur = cur.children[c]
+        cur.endOfWord = True
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        root = TrieNode()
+
+        for w in words:
+            root.addWord(w)
+        
+        ROWS, COLS = len(board), len(board[0])
+        res, visit = set(), set()
+
+        def dfs(r, c, node, word):
+            if (min(r,c) < 0 or
+                r == ROWS or c == COLS or
+                (r,c) in visit or board[r][c] not in node.children):
+                return
+            visit.add((r,c))
+            node = node.children[board[r][c]]
+            word += board[r][c]
+            if node.endOfWord:
+                res.add(word)
+            dfs(r - 1, c, node, word)
+            dfs(r + 1, c, node, word)
+            dfs(r, c - 1, node, word)
+            dfs(r, c + 1, node, word)
+            visit.remove((r,c))
+        
+        for r in range(ROWS):
+            for c in range(COLS):
+                dfs(r,c,root,'')
+        return list(res)
+
+crucial part:
+understanding why we need to remove at the specific spot.
+i was confused that if we remove the visted spot then on the next move, we forget that we went from previous spot and we might end up going back and forth.
+However, the fact that remove is after all that backtracking calls. it will be never deleted from visit dict unless we are done with all possible route with the current board[r][c]
+
+the hardest part in the problem is to understand the problem and think from top down and code from bottom up.
+brutal force at the first sight is harsh, the run time goes expontienaly high.
+but we need to think of a data structure and techique to help.
+
+use TrieNode to store char to form a word Trie given the words list
+then all we need to do is check if there is a answer in the board by traversing in the Trie
+
+now the question comes to what are the cases that we need to eliminate or pass:
+make sure the spot is not off the board, make sure is not already visited, make sure the spot we are going down the route are in the Trie.
+if all satify we can process the backtracking on four possible direction. 
