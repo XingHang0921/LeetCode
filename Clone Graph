@@ -1,0 +1,40 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        oldToNew = {}
+
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+            
+            copy = Node(node.val)
+            oldToNew[node] = copy
+
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        return dfs(node) if node else None
+
+crucial part:
+understanding what is a deep clone:
+basically create a new node thats the same val same neighbor but not the same object.
+
+the concept in this question is to visit the first node then the first node will call on the adjcent node to create a copy
+
+and the neighbor list will be incomplete by the time we visite the last node, but it will backtrack its way upward
+
+because some command line of copy.neighbors.append(dfs(nei)) has not been executed. they are waiting for the output of dfs.
+
+For V is vertices, E is edge
+time complexity:
+O(V + E)
+
+space complexity:
+O(V)
