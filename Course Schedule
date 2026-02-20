@@ -27,5 +27,39 @@ class Solution:
                 return False
         return True
 
-
 incomplete
+
+
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        preMap = {i:[] for i in range(numCourses)}
+        for crs, pre in prerequisites:
+            preMap[crs].append(pre)
+
+        visited = set()
+
+        def dfs(crs):
+            if crs in visited:
+                return False
+            if preMap[crs] == []:
+                return True
+
+            visited.add(crs)
+            for pre in preMap[crs]:
+                if not dfs(pre): return False
+            visited.remove(crs)
+            preMap[crs] = []
+            return True
+        
+        for c in range(numCourses):
+            if not dfs(c):
+                return False
+        return True
+
+Crucial part:
+understanding we need to use a hashMap, not a list.
+a list cant have a key, value pair referal, as a hashmap can provide and for the O(1) insert and lookup complexity.
+our goal is to see if the given input is a vaild course planning.
+so we need to build the directional graph at first for the dfs later.
+visited is also crucial because it saved us time in running into previous call stack and end up with infinite loop.
