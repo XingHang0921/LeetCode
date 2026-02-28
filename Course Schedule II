@@ -1,7 +1,7 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         res = []
-        prereq = [i:[] for i in range(numCourses)]
+        prereq = {i:[] for i in range(numCourses)}
         for crs, pre in prerequisites:
             prereq[crs].append(pre)
         
@@ -12,7 +12,7 @@ class Solution:
                 return False
             if crs in visited:
                 return True
-                
+
             cycle.add(crs)
 
             for pre in prereq[crs]:
