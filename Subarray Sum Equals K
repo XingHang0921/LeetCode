@@ -14,3 +14,21 @@ Time Complexity: O(N) because we are going over the array once, we are
     constantly updating the sum from beginning and through the diff we can check in
     the hash map of how many ways can we get a subarray of sum K
 Space complexity: O(N）because everytime when a sum is generated we put it in the hash map
+
+revisiting, stucked, understand the core calculation and how to reverse the problem.
+the problem want us to find the the frequency of a subarray whose sum up to k
+
+then I were to go through position one by one.
+but thats n^2 complexity and doing repeated calculation.
+
+in the brute force n^2 method we try to find:
+subarray[0 - j] - subarray[0 - i] = k
+this can be transform to:
+subarray[0 - j] - k = subarray[0 - i]
+
+where [0-j] is the curSum and subarray[0 - i] is the prefix sum at some index before current that we can removed
+to locate the valid sum = k subarray
+
+using hashmap we can record the number of time that subarray[0-i] occurs which we call the diff.
+
+add up all the valid count then we got the answer.
