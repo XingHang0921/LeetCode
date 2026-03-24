@@ -1,0 +1,24 @@
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        res = nums[0]
+        curSum = 0
+        for n in nums:
+            if curSum < 0:
+                curSum = 0
+            curSum += n
+            res = max(res, curSum)
+        return res
+    
+
+Brutal Forcing with nested loop would result in n^2 with using curSum.
+
+can we do it in linear time?
+
+track the curSum still, updated to the final result each time to the max of them
+most importantly we need to decide whether we are going to keep the prefixSum or starting from the new Position
+
+obviously if we are already negative we dont need the prefixSum to bring our Maximum value down.
+so thats where we need to set curSum back to 0 or the cur spot's sum
+
+O(n) 
+O(1)
