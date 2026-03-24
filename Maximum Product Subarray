@@ -1,0 +1,40 @@
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        res = max(nums)
+        curMax = 1
+        curMin = 1
+        curProduct = 1
+        for n in nums:
+            if n == 0:
+                curMax, curMin = 1, 1
+                continue
+            temp = curMax * n
+            curMax = max(temp, n * curMin, n)
+            curMin = min(temp, n * curMin, n)
+            res = max(curMax, res)
+        return res
+
+brutal force still takes too much time complexity,
+
+but first to optimize the time complexity we need to understand that its a multiplication along the way
+if we want to do it in linear time, we need to consider the case where maxProduct, minProduct, curValue.
+out of those three there is a actual max
+why do we ever need to consider minProduct?
+because multiplication allows negative number and -1 is bigger than -2, but when there is adjcent negative value
+the smaller the two negative number are the bigger the product going to be.
+-1, -2, -3. -4
+-1. 2, -6, 24
+
+maxProduct seems pretty straight forward: the larger the number the bigger the product.
+
+now why do we need to consider n, as a candidate?
+because of the edge case where the curValue is larger than the product so far.
+
+Most importantly, we need to assign curMax*n to a temp variable to make sure we use the right computation.
+because we are reseting the curMax in the next step but using the curMax again when updating curMin. which should be the
+old curMax not the new one.
+
+finally, we want to update the res between itself and the max since we are aiming to find the maxProduct.
+
+O(n)
+O(1)
