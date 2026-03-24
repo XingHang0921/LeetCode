@@ -10,3 +10,10 @@ class Solution(object):
             duplicate_set.add(s[right_pointer])
             result = max(result, right_pointer - left_pointer + 1)
         return result
+
+revisiting:
+
+could not come up with the part where we need to kept on deleting and shrink the left window so that we are on the right spot to start the new window.
+
+we can use loop index as right window pointer instead of have both of them as a local incrementer that prevents me to write two while loop.
+
