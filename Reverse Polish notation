@@ -24,3 +24,5 @@ Time complexity of O(N) for looping through to perform O(1) push and pop operati
             at average O(2/3 * N) for it is a vaild reverse polish notation that every 3 element there will be a non-digit
                                   so at most 2/3 of the lists is digit.
 Space: O(N) grow and shrink throughout the cases.
+
+second attempt:  2/3
