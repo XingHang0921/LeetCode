@@ -1,0 +1,18 @@
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        ROW, COL = len(image), len(image[0])
+        visited = set()
+        def dfs(r, c, prev, color):
+            if r < 0 or c < 0 or r >= ROW or c >= COL or image[r][c] != prev or (r,c) in visited: return
+            temp = image[r][c]
+            image[r][c] = color
+            visited.add((r,c))
+            dfs(r + 1, c, temp, color)
+            dfs(r - 1, c, temp, color)
+            dfs(r, c + 1, temp, color)
+            dfs(r, c - 1, temp, color)
+        dfs(sr, sc, image[sr][sc], color)
+        return image
+
+O(N): traverse all possible same color in the image
+O(N): it can be all the same color.
